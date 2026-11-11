@@ -238,6 +238,7 @@ details.box > summary::after { content: "▾"; color: var(--muted); } details.bo
       <p class="muted" id="ravLine" hidden></p>
       <div class="limits" id="alloc" style="margin-top:8px"></div>
       <div class="sumline"><span>Total réparti</span><b id="pctTotal">—</b></div>
+      <p class="muted" style="text-align:center;margin-top:24px">Version 3</p>
     </section>
   </main>
 
@@ -531,7 +532,7 @@ details.box > summary::after { content: "▾"; color: var(--muted); } details.bo
   if (!(state.settings.revenus || []).some((r) => +r.montant > 0)) { const bn = $('banner'); bn.hidden = false; bn.textContent = 'Saisis tes revenus et tes charges dans Réglages'; }
   watchMonth();
   window.addEventListener('storage', () => { state.settings = load(KEY_S, state.settings); allItems = load(KEY_I, allItems); watchMonth(); });
-  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
+  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(() => {});
 })();
 </script>
 
