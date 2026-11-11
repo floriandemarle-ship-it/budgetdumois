@@ -325,7 +325,7 @@ details.box > summary::after { content: "▾"; color: var(--muted); } details.bo
     const s = state.settings, T = totals();
     $('monthLabel').textContent = MONTH.format(monthDate(state.month));
     const spentBy = {}; let spent = 0, trSpent = 0, allSpent = 0;
-    state.items.forEach((it) => { spentBy[it.cat] = (spentBy[it.cat] || 0) + it.montant; allSpent += it.montant; if (it.moyen === 'tr') trSpent += it.montant; else spent += it.montant; });
+    state.items.forEach((it) => { allSpent += it.montant; if (it.moyen === 'tr') { trSpent += it.montant; return; } spentBy[it.cat] = (spentBy[it.cat] || 0) + it.montant; spent += it.montant; });
     const left = T.rav - spent;
     const md = monthDate(state.month), dim = new Date(md.getFullYear(), md.getMonth() + 1, 0).getDate();
     const isCur = state.month === curMonth, isPast = state.month < curMonth;
